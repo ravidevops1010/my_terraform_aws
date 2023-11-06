@@ -1,0 +1,35 @@
+[
+    {
+        "family": "portal",
+        "requiresCompatibilities": [ "EC2" ],
+        "networkMode": "bridge",    
+        "memory": 1536,
+        "portMappings": [
+            {
+                "hostPort": 0,
+                "containerPort": 80,
+                "protocol": "tcp"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "portal-logs",
+              "awslogs-region": "us-east-1",
+              "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "essential": true,
+        "mountPoints": [
+            {
+                "readOnly": null,
+                "containerPath": "/usr/share/nginx/html/index.html",
+                "sourceVolume": "portal_volume"
+            }
+        ],
+        "name": "portal",
+        "environment": [],
+        "image": "906448665985.dkr.ecr.us-east-1.amazonaws.com/nodeapp:latest",
+        "cpu": 900
+    }
+  ]

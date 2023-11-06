@@ -1,0 +1,35 @@
+[
+    {
+        "family": "unified",
+        "requiresCompatibilities": [ "EC2" ],
+        "networkMode": "bridge",    
+        "memory": 512,
+        "portMappings": [
+            {
+                "hostPort": 80,
+                "containerPort": 80,
+                "protocol": "tcp"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "spoonbill-dev-logs",
+              "awslogs-region": "us-east-1",
+              "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "essential": true,
+        "mountPoints": [
+            {
+                "readOnly": null,
+                "containerPath": "/usr/share/nginx/html/index.html",
+                "sourceVolume": "unified_volume"          
+            }
+        ],
+        "name": "unified",
+        "environment": [],
+        "image": "public.ecr.aws/k2j0g0k6/nginx:latest",
+        "cpu": 512
+    }
+  ]

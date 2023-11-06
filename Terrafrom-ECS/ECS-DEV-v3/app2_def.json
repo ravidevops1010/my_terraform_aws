@@ -1,0 +1,29 @@
+[
+    {
+        "family": "pyenv",
+        "requiresCompatibilities": [ "EC2" ],
+        "networkMode": "bridge",    
+        "memory": 1536,
+        "portMappings": [
+            {
+                "hostPort": 8080,
+                "containerPort": 8080,
+                "protocol": "tcp"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "spoonbill-dev-logs",
+              "awslogs-region": "us-east-1",
+              "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "essential": true,
+        "mountPoints": [],
+        "name": "pyenv",
+        "environment": [],
+        "image": "public.ecr.aws/k2j0g0k6/tomcat:latest",
+        "cpu": 768
+    }
+  ]

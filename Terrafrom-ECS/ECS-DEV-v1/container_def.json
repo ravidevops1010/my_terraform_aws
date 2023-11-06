@@ -1,0 +1,35 @@
+[
+    {
+        "family": "${container_name}",
+        "requiresCompatibilities": [ "EC2" ],
+        "networkMode": "${container_network}",    
+        "memory": 1024,
+        "portMappings": [
+            {
+                "hostPort": 80,
+                "containerPort": 80,
+                "protocol": "tcp"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "${awslogs-group}",
+              "awslogs-region": "${awslogs-region}",
+              "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "essential": true,
+        "mountPoints": [
+            {
+                "readOnly": null,
+                "containerPath": "${container_path}",
+                "sourceVolume": "${source_volume}"
+            }
+        ],
+        "name": "${container_name}",
+        "environment": [],
+        "image": "${container_image}",
+        "cpu": 512
+    }
+  ]
